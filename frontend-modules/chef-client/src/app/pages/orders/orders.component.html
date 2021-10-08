@@ -1,0 +1,155 @@
+<div class="row col-sm-12 col-lg-12 col-lg-12">
+
+  <div class="col-sm-6 col-lg-6 col-lg-6">
+    <span>In Line Orders</span>
+    <hr/>
+    <div *ngFor="let allItems of this.orders; let index = index" class="col-sm-12 order-style py-3">
+      <p-accordion>
+        <p-accordionTab (swiperight)="completeAll($event)" (swipeleft)="deleteAll($event)" class="wood">
+
+          <p-header style=" display: inline;width: 96%;">
+            Table <b>{{allItems.orderTableNo}}</b> Orders
+            <button (click)="actionPerformed(allItems ,$event, 'INPROGRESS')" pButton type="button"
+                    label="Mark as in Progress"
+                    class="progress-button  ui-button-warning"></button>
+            <button (click)="actionPerformed(allItems ,$event, 'DROP_WHOLE_ORDER')" icon="pi pi-trash" pButton
+                    type="button"
+                    class="delete-button  ui-button-danger"></button>
+          </p-header>
+
+          <div class="container-fluid">
+            <div class='table-responsive'>
+              <!--Table-->
+              <div class="ui-g-12"><b>Intelligent info for this customer</b>
+                : Likes : Crispy Food, Spicy Food, Crunchy Food, Prefer Drink while dining, Prefer Onion Most of the time<br/>
+              Dislikes : Salty Food, OverCooked Food
+              </div>
+              <div class="ui-g-12">Special Instruction : {{allItems.specialInstruction}}</div>
+              <table class="table">
+                <!--Table head-->
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Item Name</th>
+                  <th>Qty</th>
+                  <th>Staus</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let itm of allItems.orderItem; let indexItem = index">
+                <tr [ngClass]="itm.itemStatus === 'ORDER_CANCEL_FOR_ITEM' ? 'red-bg' : ''">
+                  <th scope="row">{{indexItem + 1}}</th>
+                  <td>{{itm.orderItem}}</td>
+                  <td>{{itm.orderQty}}</td>
+                  <td>{{getCancelItemTranslation(itm.itemStatus)}}</td>
+                  <td>
+
+                    <div class="ui-inputgroup">
+                      <!--     <button pButton type="button" (click)="actionPerformed($event , 'COMPLETE')" title="Complete"
+                                   icon="pi pi-check" class="ui-button-success"></button>-->
+
+                      <div class="ui-inputgroup">
+                        <button *ngIf="itm.itemStatus !== 'ORDER_CANCEL_FOR_ITEM'" pButton type="button"
+                                (click)="actionPerformedForItem($event, allItems.orderId, itm.itemUniqueId, 'ORDER_CANCEL_FOR_ITEM')"
+                                title="Cancel Item"
+                                icon="pi pi-times" class="ui-button-danger"></button>
+
+                        <button *ngIf="itm.itemStatus === 'ORDER_CANCEL_FOR_ITEM'" pButton type="button"
+                                (click)="actionPerformedForItem($event, allItems.orderId, itm.itemUniqueId, 'REVERTFROMCANCEL')"
+                                title="Revert Cancel"
+                                icon="pi pi-refresh" class="ui-button-warning"></button>
+
+                      </div>
+                    </div>
+
+                  </td>
+                </tr>
+                </tbody>
+                <!--Table body-->
+              </table>
+              <!--Table-->
+
+            </div>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-6 col-lg-6">
+    <span>In Progress Orders</span>
+    <hr/>
+    <div *ngFor="let allItems of this.processedOrder; let index = index" class="col-sm-12 order-style py-3">
+      <p-accordion>
+        <p-accordionTab (swiperight)="completeAll($event)" (swipeleft)="deleteAll($event)" class="wood">
+
+          <p-header style=" display: inline;width: 96%;">
+            Table <b>{{allItems.orderTableNo}}</b> Orders
+            <button (click)="actionPerformed(allItems ,$event, 'COMPLETED')" pButton type="button"
+                    label="Mark as in Complete"
+                    class="progress-button  ui-button-success"></button>
+            <button (click)="actionPerformed(allItems ,$event, 'DROP_WHOLE_ORDER')" icon="pi pi-trash" pButton
+                    type="button"
+                    class="delete-button  ui-button-danger"></button>
+          </p-header>
+
+          <div class="container-fluid">
+            <div class='table-responsive'>
+              <!--Table-->
+
+              <div class="ui-g-12">Special Instruction : {{allItems.specialInstruction}}</div>
+              <table id="tablePreview" class="table">
+                <!--Table head-->
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Item Name</th>
+                  <th>Qty</th>
+                  <th>Staus</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let itm of allItems.orderItem; let indexItem = index">
+                <tr [ngClass]="itm.itemStatus === 'ORDER_CANCEL_FOR_ITEM' ? 'red-bg' : ''">
+                  <th scope="row">{{indexItem + 1}}</th>
+                  <td>{{itm.orderItem}}</td>
+                  <td>{{itm.orderQty}}</td>
+                  <td>{{getCancelItemTranslation(itm.itemStatus)}}</td>
+                  <td>
+
+                    <div class="ui-inputgroup">
+                      <!--     <button pButton type="button" (click)="actionPerformed($event , 'COMPLETE')" title="Complete"
+                                   icon="pi pi-check" class="ui-button-success"></button>-->
+
+                      <div class="ui-inputgroup">
+                        <button *ngIf="itm.itemStatus !== 'ORDER_CANCEL_FOR_ITEM'" pButton type="button"
+                                (click)="actionPerformedForItem($event, allItems.orderId, itm.itemUniqueId, 'ORDER_CANCEL_FOR_ITEM')"
+                                title="Cancel Item"
+                                icon="pi pi-times" class="ui-button-danger"></button>
+
+                        <button *ngIf="itm.itemStatus === 'ORDER_CANCEL_FOR_ITEM'" pButton type="button"
+                                (click)="actionPerformedForItem($event, allItems.orderId, itm.itemUniqueId, 'REVERTFROMCANCEL')"
+                                title="Revert Cancel"
+                                icon="pi pi-refresh" class="ui-button-warning"></button>
+
+                      </div>
+                    </div>
+
+                  </td>
+                </tr>
+                </tbody>
+                <!--Table body-->
+              </table>
+              <!--Table-->
+
+            </div>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+
+
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

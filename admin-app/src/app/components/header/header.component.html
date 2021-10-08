@@ -1,0 +1,43 @@
+<nav class="" id="navbar-main">
+
+  <div class="navbar-header ">
+    <div class="floating-left">
+      <a class="navbar-brand" href="index.html"><span class="navbar-logo-hobo"></span> <b>Hobo</b> Ai</a>
+    </div>
+    <div class="navbar-brand navbar-expand-md navbar-light">
+      <div>
+        <a [routerLink]="['/dashboard']" class="h4 mb-0 text-black-50 text-uppercase d-none d-lg-inline-block"
+           routerLinkActive="active">{{getTitle()}}</a>
+      </div>
+      <div style="margin-left: auto; cursor: pointer">
+      <button (click)="op.toggle($event)" class="fa-pull-right pull-right navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+              aria-controls="sidenav-collapse-main">
+        <i class="color-black fa fa-bars" aria-hidden="true"></i>
+        <p-overlayPanel #op  [style]="{'width':'auto'}">
+          <div>
+            <div class="vertical-menu">
+              <ul class="navbar-nav">
+                <li *ngFor="let menuItem of listTitles" class="{{menuItem.class}} nav-item">
+                  <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="float-left nav-link">
+                    <i class="fa {{menuItem.icon}}"></i>
+                    {{menuItem.title}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </p-overlayPanel>
+
+      </button>
+      </div>
+
+      <div (click)="logout()" class=" d-none d-sm-inline-block" style="margin-left: auto; cursor: pointer">
+        <a class="fa-pull-right pull-right mb-0 text-black-50 text-uppercase ">Log out</a>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</nav>

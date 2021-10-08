@@ -1,0 +1,69 @@
+<div class="container-fluid ui-lg-12 flex-container py-4">
+  <p-tabView class="ui-lg-12 ui-md-12 ui-sm-12"  height="100%" orientation="left">
+    <p-tabPanel header="Todays Collection">
+      <p-card>
+        <div *ngFor="let allItems of this.currentOrders; let index = index" class="col-sm-12 order-style py-1">
+          <p-accordion>
+            <p-accordionTab  class="wood">
+
+              <p-header style=" display: inline;width: 96%;">
+                Table <b>{{allItems.orderTableNo}}</b> Orders ||
+                Total : <b>{{totalValue.innerHTML}}</b> ||
+                Date : <b>{{allItems.createdOn | date:'medium' }}</b>
+
+                <div pButton type="button"
+                        label="Completed"
+                        [ngClass]="allItems.orderStatus === 'ORDERED_PLACED' ? 'ui-button-success progress-button' : 'ui-button-warning progress-button'">
+                  {{allItems.orderStatus === 'ORDERED_PLACED' ? 'Completed' : 'Ongoing'}} </div>
+
+
+              </p-header>
+
+              <div>
+                <div class='table-responsive'>
+                  <div class="ui-g-12">Special Instruction : {{allItems.specialInstruction}}</div>
+                  <table id="tablePreview" class="demo">
+                    <!--Table head-->
+                    <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Item Name</th>
+                      <th>Qty</th>
+                      <th>Status</th>
+                      <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let itm of allItems.orderItem; let indexItem = index">
+                    <tr [ngClass]="itm.itemStatus === 'CANCEL' ? 'red-bg' : ''">
+                      <th scope="row">{{indexItem + 1}}</th>
+                      <td>{{itm.orderItem}}</td>
+                      <td>{{itm.orderQty}}</td>
+                      <td>{{itm.itemStatus}}</td>
+                      <td>{{itm.itemPrice}}</td>
+                    </tr>
+                    </tbody>
+                    <!--Table body-->
+                    <tfoot>
+                    <tr>
+                      <th id="total" colspan="4">Total :</th>
+                      <td #totalValue>{{getTotal(allItems.orderItem)}}</td>
+                    </tr>
+                    </tfoot>
+                  </table>
+
+                  <!--Table-->
+
+                </div>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </p-card>
+    </p-tabPanel>
+    <p-tabPanel header="Collection History">
+      <p-card>
+
+      </p-card>
+    </p-tabPanel>
+  </p-tabView>
+</div>

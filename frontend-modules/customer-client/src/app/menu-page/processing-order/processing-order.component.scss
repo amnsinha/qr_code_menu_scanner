@@ -1,0 +1,120 @@
+.cards {
+  height: 150px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+::ng-deep label.star {
+  float: right !important;
+  padding: 1px !important;
+  font-size: 22px !important;
+  transition: .2s !important;
+}
+
+.pay-style {
+  background: #d8d8d8;
+  padding: 8px;
+  color: #2b2828;
+  font-weight: bold;
+}
+
+div.stars {
+  min-width: 114px;
+  display: inline-block;
+}
+
+.cont {
+  text-align: center;
+  margin: 4% auto;
+  background: #111;
+  color: #EEE;
+  border-radius: 5px;
+  border: thin solid #444;
+  overflow: hidden;
+}
+
+.image-size {
+  height: 300px;
+  width: 300px;
+}
+
+.offer-applied-style {
+  border: 1px solid green;
+  background: #aaecaa;
+}
+
+.icon-size {
+  font-size: 24px;
+}
+
+.add-discount-text {
+  color: #afafaf;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.order-status-text {
+  display: inline-block;
+  padding-left: 7px;
+  font-size: 16px;
+}
+
+
+.stop {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: #f31e1e;
+}
+
+.demo {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.demo th {
+  padding: 5px;
+}
+
+.demo td {
+  padding: 5px;
+}
+
+.full-width {
+  min-width: 100%
+}
+
+.payment-start {
+  margin-top: 10px;
+  cursor: pointer;
+  padding-top: 7px;
+  background: #39bb39;
+
+  height: 41px;
+  text-align: center;
+  color: white;
+  border-radius: 7px;
+}
+
+.payment-success {
+  margin-top: 10px;
+  cursor: pointer;
+  padding-top: 7px;
+  background: #39bb39;
+
+  height: 41px;
+  text-align: center;
+  color: white;
+  border-radius: 7px;
+}
+
+.payment-star:hover {
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+.invoice {
+  padding-top: 25px;
+}

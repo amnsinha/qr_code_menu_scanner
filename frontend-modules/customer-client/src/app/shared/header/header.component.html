@@ -1,0 +1,58 @@
+<nav [style]="{background:headerData.headerColor}" class="navbar navbar-expand-lg navbar-dark static-top">
+  <div class="container">
+
+
+    <div *ngIf="headerData.headerIcon" class="position-relative width-90">
+
+      <div class="img-container p-1">
+        <img [ngClass]="headerData.roundIcon ?'round-icon':'square-icon'" alt="Card image cap"
+             class=" float-left img-responsive "
+             src="{{headerData.headerIcon}}"/>
+      </div>
+    </div>
+
+    <div class="">
+      <a [style]="{color:headerData.brandNameColor}" class="navbar-brand" href="#">{{headerData.headerName}}</a>
+    </div>
+
+
+    <button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarResponsive" data-toggle="collapse" type="button">
+      <span (click)="op.toggle($event)" class="navbar-toggler-icon"></span>
+
+      <p-overlayPanel #op  [style]="{'width':'auto'}">
+        <div>
+          <div class="vertical-menu">
+            <a (click)="navToHome()">Home</a>
+            <a (click)="navToOrders()">Orders</a>
+            <a (click)="navToAbout()">About</a>
+            <a (click)="navToService()">Services</a>
+            <a (click)="navToContact()">Contact</a>
+          </div>
+        </div>
+      </p-overlayPanel>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a (click)="navToHome()" class="nav-link cursor-pointer">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="navToOrders()" class="nav-link cursor-pointer"> Orders</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="navToAbout()" class="nav-link cursor-pointer"> About</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="navToService()" class="nav-link cursor-pointer">Services</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="navToContact()" class="nav-link cursor-pointer">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,32 @@
+<div class="container-fluid flex-container py-4">
+  <div class="col-md-3" *ngFor="let table of hotelTables">
+    <div class="card-body-custom">
+      <i class="fa fa-window-close cursor-pointer" (click)="removeTable(table.hotelTableNo)" style="float:right;font-size:16px;color:red"></i>
+      <h5 class="card-title">Table No : {{table.hotelTableNo}}</h5>
+      <p class="card-text">
+        <qrcode  [level]="1" [qrvalue]="table.hotelQRCodeValue"></qrcode>
+      </p>
+      <p hidden class="card-text">
+        <qrcode #qrCode [size]="500" [level]="1" [qrvalue]="table.hotelQRCodeValue"></qrcode>
+      </p>
+      <a href="{{qrCode.result}}" class="btn btn-primary full-width" download="{{table.hotelTableNo+'-QRCode'}}">Download QR</a>
+    </div>
+  </div>
+
+
+  <div class="card-body-custom" *ngIf="showaddtable">
+    <h5 class="card-title">Add Table </h5>
+    <input type="text" class="my-3 py-2" placeholder="Enter table no" name="addtable" #addtable [ngModel]="addtable.value">
+    <button (click)="addTable(addtable.value)" pButton class="full-width btn btn-primary">Add Table</button>
+  </div>
+
+
+  <div class="card-body-custom" *ngIf="!showaddtable">
+    <h5 class="card-title">Add Table +</h5>
+    <span (click)="showAddTable()" class="card-text fa fa-plus plus-style"></span>
+  </div>
+
+</div>
+
+
+

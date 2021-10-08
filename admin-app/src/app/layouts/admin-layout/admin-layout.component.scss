@@ -1,0 +1,14 @@
+.header-base{
+  position: fixed;
+  background: #fff;
+  top: 0;
+  display: block;
+  height: 50px;
+  width: 100%;
+  -webkit-box-shadow: 0 0 16px rgba(0,0,0,.15);
+  box-shadow: 0 0 16px rgba(0,0,0,.15);
+  background: white;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}

@@ -1,0 +1,104 @@
+<div *ngIf="this.items && this.items.length > 0" class="_5ZwHn">
+  <div class="_1WKwn">
+    <div class="_2uq6N">Cart
+      <div class="_1XFmX">Total Items : {{this.items.length}}</div>
+    </div>
+
+    <div class="_1t-Al">
+      <div class="_2ObNr _2qOpI">
+        <div *ngFor="let itm of this.items; let index = index" class="_2bXOy">
+
+          <div class="_3SG03">
+            <div class="_2MJB6"><span class="icon-foodSymbol _1F50F"></span></div>
+            <div class="_33KRy">{{this.items[index].name}}
+            </div>
+          </div>
+          <div class="_2bWmk">
+            <div class="_1yTZI">
+              <div class="_29ugw _3L1X9">
+
+                <div class="_3Hy2E hDN3x _4aKW6">
+                  <div (click)="oneMinus(index)" class="_29Y5Z">-</div>
+                  <div class="_29Y5Z">{{this.items[index].qty}}</div>
+                  <div (click)="onePlus(index)" class="_29Y5Z">+</div>
+                </div>
+
+              </div>
+              <div class="_1mx0r"><span class="_2W2U4">&#8377;{{this.items[index].price * this.items[index].qty}}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="EEeV3">
+      <div class="_2JQh7">
+        <textarea #te (keyup)="textAreaAdjust(te)" [(ngModel)]="this.specialInstruction" class="aeGJF" maxlength="140"
+          name="textarea" placeholder="Any Special Instruction?"></textarea>
+        <div class="_2_0V3"></div>
+        <svg class="_3iLcN" viewBox="0 0 32 32">
+          <path
+            d="M7.031 14c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7l-0.031-1c0-7.732 6.268-14 14-14v4c-2.671 0-5.182 1.040-7.071 2.929-0.364 0.364-0.695 0.751-0.995 1.157 0.357-0.056 0.724-0.086 1.097-0.086zM25.031 14c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7l-0.031-1c0-7.732 6.268-14 14-14v4c-2.671 0-5.182 1.040-7.071 2.929-0.364 0.364-0.695 0.751-0.995 1.157 0.358-0.056 0.724-0.086 1.097-0.086z">
+          </path>
+        </svg>
+      </div>
+      <div class="_161V3">
+        <div class="_1DWmI">Subtotal</div>
+        <div><span>₹ {{getTotal()}} </span></div>
+      </div>
+      <div class="_26NCu">Extra charges may apply</div>
+      <div (click)="showDialog()" class="_1gPB7">Order →</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!this.items || this.items.length === 0" class="_5ZwHn">
+  <div class="_1WKwn">
+    <div class="_2uq6N empty-cart">Please Order</div>
+
+    <div class="empty-cart-size">
+      <img src="./assets/emptyplate.jpg" style="width: 100%">
+    </div>
+
+  </div>
+</div>
+
+<p-dialog [(visible)]="display" [baseZIndex]="10000" [style]="{width: '90vw'}">
+  <p-header>
+    Confirmation
+  </p-header>
+
+
+
+  <div class="p-col-12">
+    <div class="p-inputgroup" style="
+        margin: 6px;
+    ">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <input style="
+            width: 100%;
+        " #namein type="text"  [(ngModel)]="this.customerNumber" pInputText placeholder="Name">
+    </div>
+  </div>
+
+  <div class="p-col-12">
+    <div class="p-inputgroup" style="
+          margin: 6px;
+      ">
+      <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
+      <input style="
+            width: 100%;
+        " #mobilein type="text"  [(ngModel)]="this.customerName" pInputText placeholder="Mobile Number">
+    </div>
+  </div>
+
+
+
+  <p-footer>
+
+    <p-button (click)="orderNow(); display=false" icon="pi pi-check" label="Process my order"></p-button>
+  </p-footer>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

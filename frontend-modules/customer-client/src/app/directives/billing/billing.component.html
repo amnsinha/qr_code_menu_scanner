@@ -1,0 +1,38 @@
+<form (ngSubmit)="send()" [formGroup]="billingForm">
+
+  <div class="form-row">
+
+    <div *ngFor="let formFields of billingCache" class="form-group col-md-6">
+
+      <label for="inputEmail4">{{formFields.label}}</label>
+      <div *ngIf="formFields.type=='text'">
+        <input
+          class="form-control"
+          formControlName="{{formFields.uid}}"
+          placeholder="{{formFields.placeholder}}"
+          type="text"/>
+
+        <small
+          *ngIf="billingForm.controls[formFields.uid].status=='INVALID' && billingForm.controls[formFields.uid].touched"
+          class="form-text text-danger"
+        >{{formFields.errorMsg}}</small></div>
+
+      <div *ngIf="formFields.type=='select'">
+        <select class="form-control" formControlName="{{formFields.uid}}" id="inputState">
+          <option>Select</option>
+          <option *ngFor="let optionName of formFields.options" value="{{optionName}}">{{optionName}}</option>
+        </select>
+        <small
+          *ngIf="billingForm.controls[formFields.uid].status=='INVALID' && billingForm.controls[formFields.uid].touched"
+          class="form-text text-danger"
+        >{{formFields.errorMsg}}</small>
+      </div>
+    </div>
+
+  </div>
+  <button *ngIf="cart.cartItemsList && cart.cartTotal" [disabled]="billingForm.invalid" class="btn btn-sm btn-primary"
+          type="submit">Confirm and Place Order
+  </button>
+  <a class="btn btn-sm btn-info float-right" routerLink="/products">Continue Shopping</a>
+
+</form>

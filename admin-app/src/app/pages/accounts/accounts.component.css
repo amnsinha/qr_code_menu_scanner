@@ -1,0 +1,26 @@
+.demo {
+  width: 100%;
+  border:1px solid #C0C0C0;
+  border-collapse:collapse;
+  padding:5px;
+}
+.demo th {
+  border:1px solid #C0C0C0;
+  padding:5px;
+  background:#F0F0F0;
+}
+.demo td {
+  border:1px solid #C0C0C0;
+  padding:5px;
+}
+.progress-button {
+  font-weight: 500;
+  padding: 8px;
+  top: 0;
+  position: absolute;
+  right: 0;
+  border: 0px;
+  color: white;
+  background: green;
+  height: 100%;
+}

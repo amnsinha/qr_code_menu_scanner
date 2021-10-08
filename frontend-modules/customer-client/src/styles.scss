@@ -1,0 +1,17 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+$container-max-width: 1200px;
+$body-bg: #000;
+
+$body-color: #111;
+body {
+  background: #e9ecee;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.padding-right-3{
+  padding-right: 5px;
+}

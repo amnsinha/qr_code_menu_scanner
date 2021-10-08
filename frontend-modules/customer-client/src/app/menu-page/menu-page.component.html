@@ -1,0 +1,5 @@
+<span *ngIf="showMenu">
+  <div *ngIf="this.tableNo" style="text-align: center;font-weight: 500;margin: 7px;">You are dining at table no {{this.tableNo}}</div>
+  <app-products-page
+    (onlyVeg)="filter('ONLY_VEG')"></app-products-page>
+</span>

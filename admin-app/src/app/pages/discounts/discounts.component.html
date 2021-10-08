@@ -1,0 +1,49 @@
+<div class="flex-container py-4">
+  <div *ngFor="let item of hotelDiscounts" class="col-md-3">
+    <div class="card-body-custom">
+      <i (click)="removeDiscount(item.discountId)" class="fa fa-window-close cursor-pointer"
+         style="float:right;font-size:16px;color:red"></i>
+      <h5 class="card-title">Discount percentage : </h5>
+      <div class="card-text-percentage">
+        {{item.discount}} %
+      </div>
+      <div class="card-text-percentage">
+        {{item.discountCode}}
+      </div>
+      <p class="card-text">
+        {{item.description}}
+      </p>
+    </div>
+  </div>
+
+
+  <div *ngIf="showaddtable" class="col-md-3 ng-star-inserted">
+    <div class="card-body-custom">
+      <i (click)="showaddtable = false" class="fa fa-window-close cursor-pointer"
+         style="float:right;font-size:16px;color:red"></i>
+      <label>Enter Discount Percentage</label>
+      <input #discountpercent [ngModel]="discountpercent.value" class=" full-width" name="addtable"
+             type="number">
+      <label>Enter Discount Code</label>
+      <input #discouncode [ngModel]="discouncode.value" class=" full-width" name="addtable"
+             type="text">
+      <label class="my-3 py-2">Enter description</label>
+      <textarea #addDesc [ngModel]="addDesc.value"class="full-width" name="addtable"
+                type="text"></textarea>
+      <button (click)="addDiscount(discountpercent.value ,addDesc.value, discouncode.value)" class="full-width btn btn-primary">Add Discount ;</button>
+    </div>
+  </div>
+
+
+  <div *ngIf="!showaddtable" class="col-md-3">
+    <div class="card-body-custom">
+      <i class="fa fa-window-close cursor-pointer" style="float:right;font-size:16px;color:red"></i>
+      <h5 class="card-title">Add Discount + : </h5>
+      <span (click)="showAddTable()" class="card-text fa fa-plus plus-style-discount"></span>
+    </div>
+  </div>
+
+</div>
+
+
+

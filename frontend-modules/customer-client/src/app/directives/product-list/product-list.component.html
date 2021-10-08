@@ -1,0 +1,52 @@
+<div *ngFor="let menuList of allprdts; index as i" class="_1Jgt5">
+  <h2 id="{{menuList.name}}">{{menuList.name}}</h2>
+  <div *ngIf="menuList.categories.length <= 1" class="Yu6Bn">{{menuList.categories[0].items.length}} items</div>
+
+  <div *ngFor="let categoriesList of menuList.categories">
+    <div *ngIf="menuList.categories.length > 1" class="_1Jgt5">
+      <h3>{{categoriesList.name}}</h3>
+      <div *ngIf="menuList.categories.length > 1" class="Yu6Bn">{{categoriesList.items.length}} items</div>
+    </div>
+
+    <div *ngFor="let item of categoriesList.items | filter : searchedProduct | sortBy : sortByOption let index = index"
+         class="main-header _2wg_t">
+      <span *ngIf="item.isVeg"><i class="pi foodicon veg pi-circle-on"></i></span>
+      <span *ngIf="!item.isVeg"><i class="pi foodicon non-veg pi-circle-on"></i></span>
+      <div class="GaqmA">
+        <div class="_1G3G4 _3L1X9">
+          <div (click)="categoriesList.items[index].addedInCart = true; addToCart(item ,1)" *ngIf="!item.addedInCart"
+               class="cursor-pointer"
+               ngclass="_1RPOp">ADD
+          </div>
+          <div *ngIf="item.addedInCart" class="_1RPOp">
+
+            <div (click)="categoriesList.items[index].qty == 0 ? categoriesList.items[index].qty = 0 :
+                    categoriesList.items[index].qty = categoriesList.items[index].qty - 1; updateCartItems(item)" class="cussor-pointer"
+                 class="_29Y5Z">-
+            </div>
+            <div class="_29Y5Z cursor-pointer">{{this.categoriesList.items[index].qty}}</div>
+            <div (click)="categoriesList.items[index].qty = categoriesList.items[index].qty + 1; updateCartItems(item)"
+                 class="_29Y5Z">+
+            </div>
+          </div>
+
+        </div>
+        <div class="_19GqV">
+          <!--<div>
+            <img alt="Card image cap" class="rounded float-left img-responsive p-1"
+                 src="{{item.itemTagImage}}">
+          </div>-->
+          <div class="_2Gojq">
+            <div class="jTy8b" itemprop="name">{{item.name}}</div>
+          </div>
+          <div class="_2aOqz _1xb2E">South Indian style crepe made of fermented rice batter engages your taste buds
+            perfectly; accompanied with sambar and chutney.
+          </div>
+          <div class="_12lpv">
+            <span class="bQEAj">&#8377;{{item.minPrice}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row col-sm-12 col-lg-12 col-lg-12">
+  <div *ngFor="let allItems of this.completedOrders; let index = index" class="col-sm-12 order-style py-3">
+    <p-accordion>
+      <p-accordionTab (swiperight)="completeAll($event)" (swipeleft)="deleteAll($event)" class="wood">
+
+        <p-header style=" display: inline;width: 96%;">
+          Table <b>{{allItems.orderTableNo}}</b> Orders
+        </p-header>
+
+        <div class="container-fluid">
+          <div class='table-responsive'>
+            <!--Table-->
+            <table id="tablePreview" class="table">
+              <!--Table head-->
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Intructions</th>
+                <th>Staus</th>
+
+              </tr>
+              </thead>
+              <tbody *ngFor="let itm of allItems.orderItem; let indexItem = index">
+              <tr>
+                <th scope="row">{{indexItem + 1}}</th>
+                <td>{{itm.orderItem}}</td>
+                <td>{{itm.orderQty}}</td>
+                <td>{{allItems.specialInstruction}}</td>
+                <td>{{allItems.orderStatus}}</td>
+              </tr>
+              </tbody>
+              <!--Table body-->
+            </table>
+            <!--Table-->
+
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

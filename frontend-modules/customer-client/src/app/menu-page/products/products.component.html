@@ -1,0 +1,56 @@
+<div class="form-row align-items-center">
+  <!-- <div class="col-md-9">
+     <div class="input-group mb-2 mt-4">
+       <div class="input-group-prepend">
+         <div class="input-group-text">Search</div>
+       </div>
+       <input [(ngModel)]="searchText" class="form-control" placeholder="Please enter any product name to search ">
+     </div>
+   </div>
+   <div class="col-md-3">
+     <div class="mb-2 mt-4">
+       <select [(ngModel)]="sortOption" class="form-control">
+         <option value="product_name|asc">Sort By Name (A to Z)</option>
+         <option value="product_name|desc">Sort By Name (Z to A)</option>
+         <option value="product_price|lth">Sort By Price (Low to High)</option>
+         <option value="product_price|htl">Sort By Price (High to Low)</option>
+       </select>
+     </div>
+   </div>
+   <div class="col-md-9">
+     <div class="input-group">
+       <div class="balanced-right">
+         <span>Show Only</span>
+       </div>
+       <p-checkbox (click)="showOnlyVeg()" class="balanced-right" label="Veg" name="groupname" value="val1">Veg
+       </p-checkbox>
+       <p-checkbox class="balanced-right" label="Non-Veg" name="groupname" value="val1">Non-Veg</p-checkbox>
+     </div>
+   </div>-->
+
+  <div class="input-group mb-2 pt-4 pl-3 mt-4">
+    <p-tabMenu [model]="menuItems" [activeItem]="selectedOutlet"></p-tabMenu>
+  </div>
+</div>
+<section class="slice py-5">
+  <div class="row row-grid">
+    <div class="col-12 col-md-5 col-lg-3 order-md-1">
+      <p-panelMenu [model]="items" [multiple]=false [style]="{'width':'100%'}"></p-panelMenu>
+    </div>
+
+    <div *ngIf="productsData && productsData.menuList.length > 0" class="col-12 col-md-7 col-lg-6 order-md-2 pr-md-5">
+      <app-product-list-dir
+        [allProductList]="productsData.menuList"
+        [menuCategorieClicked]="menuCategorieClicked"
+        [sortingBy]="sortOption"
+      ></app-product-list-dir>
+    </div>
+    <div class="col-12 col-md-7 col-lg-3 order-md-3">
+      <app-cart-items
+
+        [selectedOutletId]="outletId"
+      ></app-cart-items>
+    </div>
+  </div>
+</section>
+

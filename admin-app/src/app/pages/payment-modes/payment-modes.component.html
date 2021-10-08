@@ -1,0 +1,35 @@
+<div class="container-fluid ui-lg-12 flex-container py-4">
+  <p-tabView class="ui-lg-12 ui-md-12 ui-sm-12" height="100%" orientation="left">
+    <p-tabPanel header="Upload Payment QR Files">
+      <p-card>
+        <p-fileUpload (uploadHandler)="onUpload($event, $event)" accept="image/*" customUpload="true"
+                      maxFileSize="1000000" multiple="multiple" name="demo[]">
+          <ng-template pTemplate="content">
+          </ng-template>
+        </p-fileUpload>
+      </p-card>
+    </p-tabPanel>
+    <p-tabPanel  header="Manage Payment Files">
+      <p-card>
+
+        <div *ngIf="this.filesfetchedInfos.length === 0">No QR for Payments Uploaded.</div>
+        <div *ngFor="let itmFile of this.filesfetchedInfos;" class="ui-fileupload-files ng-star-inserted">
+          <div class="ng-star-inserted">
+            <div class="ui-fileupload-row ng-star-inserted">
+              <div><img class="ng-star-inserted" [src]="itmFile.files"
+                        width="50"></div>
+              <div>{{itmFile.name}}</div>
+              <div>
+                <button #fileno (click)="removePayment(itmFile.id)" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"
+                        icon="pi pi-times" ng-reflect-icon="pi pi-times" pbutton=""
+                        type="button"><span
+                  aria-hidden="true" class="ui-button-icon-left ui-clickable pi pi-times"></span><span
+                  aria-hidden="true" class="ui-button-text ui-clickable">ui-btn</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </p-tabPanel>
+  </p-tabView>
+</div>

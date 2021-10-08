@@ -1,0 +1,28 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-custom" id="sidenav-main">
+  <div class="container-fluid">
+
+    <a class="navbar-brand pt-0 navbar-brand-img" routerLinkActive="active" [routerLink]="['/dashboard']"></a>
+    <div class="collapse navbar-collapse"  id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+          <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+                  <i class="fa {{menuItem.icon}}"></i>
+                  {{menuItem.title}}
+              </a>
+          </li>
+      </ul>
+      <!-- Divider -->
+      <hr class="my-3">
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted">Updates</h6>
+      <!-- Navigation -->
+      <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="ni ni-spaceship"></i> Check New Features
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

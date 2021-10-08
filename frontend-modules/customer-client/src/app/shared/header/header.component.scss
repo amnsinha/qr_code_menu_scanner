@@ -1,0 +1,49 @@
+.round-icon {
+  border: 2px solid white;
+  border-radius: 100% !important;
+  width: 100%;
+}
+
+.square-icon {
+  border: 2px solid white;
+  width: 100%;
+}
+
+.vertical-menu {
+  width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+.img-container {
+
+  border-radius: 25px;
+  margin-top: -21px;
+  position: absolute;
+  height: 90px;
+  width: 90px;
+}
+
+.dropdown-style {
+  background: red;
+}
+
+
+.width-90 {
+  width: 92px;
+}

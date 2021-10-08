@@ -1,0 +1,46 @@
+<div class="container-fluid ui-lg-12 flex-container py-4">
+  <p-tabView class="ui-lg-12 ui-md-12 ui-sm-12" height="100%" orientation="left">
+    <p-tabPanel  header="Add Menu Outlet">
+      <p-toolbar>
+        <div class="ui-toolbar-group-left">
+        </div>
+        <div class="ui-toolbar-group-left">
+          <div class="text-left">Menu Outlet
+          </div>
+        </div>
+      </p-toolbar>
+      <p-card>
+        <div class=" ui-fluid container">
+          <div *ngIf="this.hotelOutletDetails && this.hotelOutletDetails.length > 0" class="row">
+            <div *ngFor="let outletItem of this.hotelOutletDetails" class="pr-3">
+              <p-card [style]="{'width': '15rem', 'margin-bottom': '2em'}" header="{{outletItem.outletName}}">
+                <div class="cursor-pointer">{{outletItem.outletDesc}}</div>
+              </p-card>
+            </div>
+          </div>
+          <p-card *ngIf="!showOutletAddScreen" [style]="{'width': '15rem', 'margin-bottom': '2em'}" class="row"
+                                                                                                  header="Add Outlet">
+            <div (click)="showOutletAddScreen = true" class="text-big cursor-pointer">+</div>
+          </p-card>
+          <p-card *ngIf="showOutletAddScreen" [style]="{'width': '15rem', 'margin-bottom': '2em'}">
+            <i (click)="showOutletAddScreen = false" class="fa fa-window-close cursor-pointer"
+                                                   style="float:right;font-size:16px;color:red"></i>
+            <div class="p-field ui-lg-12">
+              <label for="roletype">Outlet Name</label>
+              <input [(ngModel)]="outletDetail.outletName" class="full-width" id="roletype" pInputText type="text">
+            </div>
+            <div class="p-field ui-lg-12">
+              <label for="roledesc">Outlet Description</label>
+              <textarea [(ngModel)]="outletDetail.outletDesc" class="full-width" id="roledesc" pInputText
+                                                           type="text"></textarea>
+            </div>
+            <div class="p-field ui-lg-12">
+              <button (click)="saveOutletDetails()" class="full-width btn btn-primary">Save</button>
+            </div>
+          </p-card>
+        </div>
+      </p-card>
+    </p-tabPanel>
+  </p-tabView>
+
+</div>

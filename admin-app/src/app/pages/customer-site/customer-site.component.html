@@ -1,0 +1,109 @@
+<div class="container-fluid ui-lg-12 flex-container py-4">
+  <p-tabView class="ui-lg-12 ui-md-12 ui-sm-12" height="100%" orientation="left">
+    <p-tabPanel header="Header Settings">
+      <p-toolbar>
+        <div class="ui-toolbar-group-left">
+        </div>
+
+        <div class="ui-toolbar-group-right">
+          <div (click)="saveHeaderSettings()" class="col-4 text-right">
+            <a class="btn btn-sm btn-primary">Save</a>
+          </div>
+
+        </div>
+      </p-toolbar>
+      <p-card>
+        <div class="ui-fluid">
+          <div class="p-field ui-lg-12 row">
+          <div class="p-field ui-lg-6">
+            <label for="firstname1">Brand Name</label>
+            <input [(ngModel)]="headerSettings.headerName" class="full-width"
+                   id="firstname1" pInputText
+                   type="text">
+          </div>
+          <div class="p-field ui-lg-6">
+            <label for="color">Brand Font Color</label><br/>
+            <input #headerColor (colorPickerChange)="headerSettings.brandNameColor = color" [(colorPicker)]="color"
+                   [(ngModel)]="headerSettings.brandNameColor"
+                   [style.background]="headerSettings.brandNameColor"
+                   class="half-width" id="color"/>
+          </div>
+          </div>
+
+          <div class="p-field ui-lg-12">
+            <label for="color">Brand Color</label><br/>
+            <input #headerColor (colorPickerChange)="headerSettings.headerColor = color" [(colorPicker)]="color"
+                   [(ngModel)]="headerSettings.headerColor"
+                   [style.background]="headerSettings.headerColor"
+                   class="half-width" id="color"/>
+          </div>
+
+          <div class="p-field ui-lg-12">
+            <label for="color">Brand Icon</label><br/>
+            <input (change)="onUpload($event.target.files)" type="file"/>
+          </div>
+
+          <div class="p-field ui-lg-12">
+            <label class="mr-1" for="iconsize">Brand Icon Round/Square?</label>
+            <p-inputSwitch [(ngModel)]="headerSettings.roundIcon" id="iconsize"></p-inputSwitch>
+          </div>
+
+          <div *ngIf="this.headerSettings.headerIcon!=null" class="header-con">
+            <hr/>
+            Preview
+            <hr/>
+            <img [ngClass]="headerSettings.roundIcon ? 'round-icon' : ''" [src]="this.headerSettings.headerIcon"
+                 style="border: 1px solid grey;margin: 10px;height: 90px;width: 90px;"/>
+          </div>
+
+        </div>
+
+      </p-card>
+    </p-tabPanel>
+
+    <p-tabPanel header="Contact Settings">
+      <p-toolbar>
+        <div class="ui-toolbar-group-left">
+        </div>
+
+        <div class="ui-toolbar-group-right">
+          <div (click)="savePageSettings()" class="col-4 text-right">
+            <a class="btn btn-sm btn-primary">Save</a>
+          </div>
+
+        </div>
+      </p-toolbar>
+      <p-card>
+        <div class="ui-fluid">
+          <div class="p-field ui-lg-12">
+            <label for="conact">Contact No for cutomer</label>
+            <input [(ngModel)]="pageSettings.contactNoforCustomer" class="full-width"
+                   id="conact" pInputText
+                   type="text">
+          </div>
+          <div class="p-field ui-lg-12">
+            <label for="conact">Contact No 2 for cutomer</label>
+            <input [(ngModel)]="pageSettings.contactNoforCustomer2" class="full-width"
+                   id="conact" pInputText
+                   type="text">
+          </div>
+          <div class="p-field ui-lg-12">
+            <label for="eAddress">Email Address for customer</label>
+            <input [(ngModel)]="pageSettings.contactEmailForCustomer" class="full-width"
+                   id="eAddress" pInputText
+                   type="email">
+          </div>
+          <div class="p-field ui-lg-12">
+            <label for="eAddress">About Us</label>
+            <p-editor [(ngModel)]="pageSettings.aboutus" [style]="{'height':'320px'}"></p-editor>
+          </div>
+
+        </div>
+      </p-card>
+
+    </p-tabPanel>
+
+
+  </p-tabView>
+
+</div>

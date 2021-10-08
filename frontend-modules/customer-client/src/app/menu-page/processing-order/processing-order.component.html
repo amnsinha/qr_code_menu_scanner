@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="pt-5"></div>
+  <div class="row">
+    <button (click)="navigateToOrderPage()" class="btn btn-primary my-4" type="submit">Order More</button>
+    <div class="col-lg-12 pt-3">
+      <div><label class="font-weight-bold">Status</label></div>
+      <p-steps [activeIndex]="this.activeIndex" [model]="items" styleClass="full-width"></p-steps>
+    </div>
+    <div class="col-lg-12">
+      <div><label class="font-weight-bold">Payment</label></div>
+      <div style="border: 1px dashed black"></div>
+      <div class="invoice">
+
+        <div class="col-sm-12 row order-style py-1">
+          <div class="col-lg-6 order-style py-1">
+            <div>
+              <div class='table-responsive'>
+                <div class="p-col-12 p-md-1">
+                  <label class="offer-not-found" *ngIf="this.offerInvalid">Coupon not found</label>
+                  <div *ngIf="!this.isOfferApplied" class="input-group mb-1">
+                    <div class="input-group-prepend"></div><input class="form-control email-input" #discount type="text" placeholder="Enter discount code">
+                    <div class="input-group-append"><button (click)="checkDiscount(discount.value)" class="btn btn-primary d-flex align-items-center" type="button">Apply<i class="fa fa-long-arrow-right ml-2"></i></button></div>
+                  </div>
+                  <div *ngIf="this.isOfferApplied" class="position-relative offer-applied-style p-md-1 input-group mb-1">
+                    <div class="input-group-prepend">
+                      <div> <i class="pi pi-check icon-size"></i>{{discountPercentage}}% Off Offer Applied</div>
+                    </div>
+                    <div class="cursor-pointer mb-1" (click)="isOfferApplied = false; discountRemoved(isOfferApplied)" style="position: absolute;right: 0;"><i class="pi pi-times icon-size"></i></div>
+                 </div>
+                </div>
+                <table class="demo" id="tablePreview">
+                  <!--Table head-->
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Item Name</th>
+                    <th>Item Status</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Rate Item</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let itm of orderDetails.orderItem; let indexItem = index">
+                  <tr [ngClass]="itm.itemStatus === 'CANCEL' ? 'red-bg' : ''">
+                    <th scope="row">{{indexItem + 1}}</th>
+                    <td>{{itm.orderItem}}</td>
+                    <td><i class="pi pi-circle-on" style="color:{{getItemStatusColor(itm)}}"></i>
+                      <div class="order-status-text">{{getItemStatusText(itm)}}</div>
+                    </td>
+                    <td>{{itm.orderQty}}</td>
+                    <td>₹ {{itm.itemPrice}}</td>
+                    <td>
+                      <div class="cont">
+                        <div class="stars">
+                          <ngx-star-rating 
+                          [id]="indexItem"></ngx-star-rating>
+                        </div>
+                  
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                  <!--Table body-->
+                  <tfoot>
+                  <tr style="border-top: 1px dashed grey;">
+                  <tr style="border-top: 1px dashed grey;">
+                    <th colspan="4" id="total">Total :</th>
+                    <td id="totalValue" #totalValue>₹ {{getTotal(orderDetails.orderItem) - (discountPercentage * getTotal(orderDetails.orderItem))/100}}</td>
+                  </tr>
+                  </tfoot>
+                  <tfoot>
+                  <tr style="border-top: 1px dashed grey;">
+                  <tr *ngIf="discountPercentage > 0" istyle="border-top: 1px dashed grey;">
+                    <th colspan="4" id="total"><a class="add-discount-text cursor-pointer">Discount Applied:</a></th>
+                    <td id="totalValue" #totalValue> ₹ -{{discountPercentage * getTotal(orderDetails.orderItem)/100}} </td>
+                  </tr>
+                  </tfoot>
+                </table>
+
+
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-lg-5 order-style py-5">
+              <div *ngIf="discountPercentage === 0"  class="pay-style">Please Pay : ₹ {{this.totalAmount}}</div>
+             <div *ngIf="discountPercentage > 0"  class="pay-style">Please Pay : ₹ {{this.totalAmount - (discountPercentage * this.totalAmount)/100}}</div>
+            <hr/>
+            <div>
+              <img style="vertical-align: middle;
+              border-style: none;
+              width: 100%;" src="../../../assets/pay.png">
+            </div>
+            <div id="containerGooglePay"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
