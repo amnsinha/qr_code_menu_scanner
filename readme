@@ -1,0 +1,18 @@
+<b>Hello</b>
+
+
+
+
+This project i have created during corona first wave
+it helps hotels restaurant to give customer a touchless solution of menu and order in realtime
+
+it have several modules
+-main website (in simple html css js)
+-admin modoule (to process order to chef or cloud kitchen)
+-chen module (to aceept the order and to process it in complete stage)
+-customer module (to order something from the menu)
+
+and backend server ofcouse to handle api request
+
+backend is in spring boot
+frontend is in angular 2+
